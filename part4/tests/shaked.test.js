@@ -66,7 +66,16 @@ describe('testing Api requests', ()=>{
         expect(changedPost.likes).toBe(10)
     })
 })
-
+describe('testing User Api',()=>{
+    it('should create User',async()=>{
+        const response = await api.post('/api/users').send({userName:'omer', name:'omer', password:'1234'});
+        expect(response.status).toBe(200);
+    })
+    it('should not create user with existing userName or missing params',async()=>{
+        const response = await api.post('/api/users').send({name:'omer'});
+        expect(response.status).toBe(400);
+    })
+})
 afterAll(()=>{
     mongoose.connection.close();
     app.killServer();
