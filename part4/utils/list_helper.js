@@ -19,3 +19,35 @@ exports.favoriteBlog = (blogs)=>{
     }
     return maxBlog
 }
+
+
+exports.mostBlogs = (blogs) => {
+    const objectOfAuthor = {}
+    for (const blog of blogs) {
+      objectOfAuthor[blog.author] = ++objectOfAuthor[blog.author] || 1
+    }
+    selectedObj = { blogs: 0 }
+    for (const author in objectOfAuthor) {
+      if (objectOfAuthor[author] > selectedObj.blogs) {
+        selectedObj.author = author
+        selectedObj.blogs = objectOfAuthor[author]
+      }
+    }
+    return selectedObj
+  }
+
+  exports.mostLikes = (blogs)=>{
+    const objectOfAuthor = {}
+    for (const blog of blogs) {
+      objectOfAuthor[blog.author] =  objectOfAuthor[blog.author] + blog.likes || blog.likes 
+    }
+    selectedObj = { likes: 0 }
+    for (const author in objectOfAuthor) {
+      if (objectOfAuthor[author] > selectedObj.likes) {
+        selectedObj.author = author
+        selectedObj.likes = objectOfAuthor[author]
+      }
+    }
+    return selectedObj
+  }
+  
