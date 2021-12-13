@@ -9,3 +9,13 @@ exports.totalLikes = (blogs)=>{
     }
     return likes;
 }
+
+exports.favoriteBlog = (blogs)=>{
+    let maxBlog={likes:0};
+    for(let blog of blogs){
+        if(blog.likes>maxBlog.likes){
+            maxBlog=blog
+        }
+    }
+    return maxBlog
+}

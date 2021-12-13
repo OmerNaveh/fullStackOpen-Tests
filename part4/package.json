@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest /tests"
+    "test": "jest /tests",
+    "push": "git add . & git commit -m \"task completed process\" & git push"
   },
   "keywords": [],
   "author": "",
