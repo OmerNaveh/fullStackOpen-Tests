@@ -9,6 +9,13 @@ exports.getBlogs = (request, response) => {
   };
 
   exports.createBlog = (request, response) => {
+    if(!request.body.title || !request.body.url){
+       response.status(400).send()
+       return
+    }
+    if(!request.body.likes){
+      request.body.likes = 0;
+    }
     const blog = new Blog(request.body)
   
     blog
