@@ -9,7 +9,11 @@ app.use(express.json())
 
 app.use('/api/blogs', blogRouter)
 
-app.listen(PORT, () => {
+const listener = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+
+app.killServer=()=>{
+  listener.close()
+}
 module.exports = app;

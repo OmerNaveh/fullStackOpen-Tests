@@ -69,5 +69,6 @@ describe('testing Api requests', ()=>{
 
 afterAll(()=>{
     mongoose.connection.close();
+    app.killServer();
 })
 
