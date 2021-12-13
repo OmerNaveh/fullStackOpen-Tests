@@ -24,3 +24,16 @@ exports.getBlogs = (request, response) => {
         response.status(201).json(result)
       })
   };
+  exports.deleteBlogByTitle = async(req,res)=>{
+    const title = req.body.title;
+    if(!title){
+      return res.status(400).send()
+    }
+    try{
+      await Blog.deleteOne({title:title});
+      return res.status(200).send('deleted successfully');
+    }
+    catch(err){
+      return res.status(404).send('not found')
+    }
+  }

@@ -44,6 +44,14 @@ describe('testing Api requests', ()=>{
           })
         expect(response.status).toBe(400)
     })
+    it('should validate a post was deleted', async()=>{
+        const response = await api.delete('/api/blogs').send({
+            title: "Michael Chan",
+          })
+        expect(response.status).toBe(200)
+        const allBlogs = await api.get('/api/blogs')
+        expect(allBlogs.body).toHaveLength(mockData.length-1)
+    })
 })
 
 afterAll(()=>{
