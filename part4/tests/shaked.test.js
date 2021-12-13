@@ -52,6 +52,7 @@ describe('testing Api requests', ()=>{
         const allBlogs = await api.get('/api/blogs')
         expect(allBlogs.body).toHaveLength(mockData.length-1)
     })
+    
     it('should validate a post was updated', async()=>{
         const response = await api.put('/api/blogs').send({
             title: "React patterns",
