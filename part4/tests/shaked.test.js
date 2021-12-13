@@ -46,11 +46,23 @@ describe('testing Api requests', ()=>{
     })
     it('should validate a post was deleted', async()=>{
         const response = await api.delete('/api/blogs').send({
-            title: "Michael Chan",
+            title: "React patterns",
           })
         expect(response.status).toBe(200)
         const allBlogs = await api.get('/api/blogs')
         expect(allBlogs.body).toHaveLength(mockData.length-1)
+    })
+    it('should validate a post was updated', async()=>{
+        const response = await api.put('/api/blogs').send({
+            title: "React patterns",
+            author: "Michael Chan",
+            url: "https://reactpatterns.com/",
+            likes: 10,
+          })
+        expect(response.status).toBe(200)
+        const allBlogs = await api.get('/api/blogs')
+        const changedPost = allBlogs.body.find(post=>post.title = 'React patterns')
+        expect(changedPost.likes).toBe(10)
     })
 })
 

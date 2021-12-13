@@ -37,3 +37,18 @@ exports.getBlogs = (request, response) => {
       return res.status(404).send('not found')
     }
   }
+
+  exports.updatePostByTitle = async(req,res)=>{
+    const title = req.body.title;
+    if(!title){
+      return res.status(400).send()
+    }
+    try{
+      await Blog.updateOne({title:title},req.body);
+      return res.status(200).send('deleted successfully');
+    }
+    catch(err){
+      return res.status(404).send('not found')
+    }
+  }
+  
