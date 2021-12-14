@@ -7,7 +7,7 @@ test('testing dummy', ()=>{
 describe('Blog Tests', ()=>{
 
   test('getting total likes', ()=>{
-    expect(totalLikes(mockData)).toBe(36);
+    expect(totalLikes(mockData)).toBe(43);
   })
   
   it('should return the blog with most likes', ()=>{

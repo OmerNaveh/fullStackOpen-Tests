@@ -1,4 +1,6 @@
 const Blog = require('../model/model')
+const jwt = require("jsonwebtoken")
+const JWTSECRET = "shhhhh"
 
 exports.getBlogs = (request, response) => {
     Blog
@@ -52,3 +54,46 @@ exports.getBlogs = (request, response) => {
     }
   }
   
+  exports.authBlog = (request, response) => {
+    try {
+      const cookieUserObj = jwt.verify(request.token, JWTSECRET);
+      if (typeof cookieUserObj === "string") {
+        throw cookieUserObj;
+      }
+      if (!request.body.title || !request.body.url) {
+        response.status(400).send()
+        return;
+      }
+      if (!request.body.likes) {
+        request.body.likes = 0
+      }
+      const blog = new Blog(request.body)
+  
+      blog
+        .save()
+        .then(result => {
+          response.status(201).json(result)
+        })
+    } catch (err) {
+      response.status(400).send("inValid")
+      return;
+    }
+  }
+
+  exports.deletAuth = async (request, response) => {
+    try {
+      const cookieUserObj = jwt.verify(request.token, JWTSECRET);
+      if (typeof cookieUserObj === "string") {
+        throw cookieUserObj;
+      }
+      const { title } = request.body
+      const deleteCount = await Blog.deleteOne({ title: title, author: cookieUserObj.userName })
+      console.log(deleteCount, "delete count");
+      if (deleteCount.deleteCount !== 0) {
+        throw title
+      }
+      response.send()
+    } catch (err) {
+      response.status(400).send("invalid")
+    }
+  }
