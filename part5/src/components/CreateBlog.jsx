@@ -2,12 +2,15 @@ import axios from "axios"
 import { useRef } from "react"
 import blogService from '../services/blogs'
 import notify from "../services/notifiy"
+import PropTypes from 'prop-types'
 
 export default function CreatBlog(props){
     const titleInput = useRef(null)
     const authorInput = useRef(null)
     const urlInput = useRef(null)
-
+    CreatBlog.prototype = {
+        setBlogs: PropTypes.func.isRequired
+    }
     const cleanInputs= ()=>{
         titleInput.current.value = '';
         authorInput.current.value ='';
@@ -23,6 +26,7 @@ export default function CreatBlog(props){
             props.setBlogs(updatedBlogs)
             cleanInputs()
             notify('Blog created Successfully')
+            props.setVisible(false);
         }catch(error){
             notify('Blog was not created successfully')
         }
