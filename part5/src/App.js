@@ -4,7 +4,6 @@ import CreatBlog from './components/CreateBlog'
 import Login from './components/LogIn'
 import VisiblityCreateForm from './components/VisibiltyCreateForm'
 import blogService from './services/blogs'
-import notify from './services/notifiy'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
