@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import like from '../services/like'
 import blogService from '../services/blogs'
 import notify from '../services/notifiy'
@@ -13,6 +13,7 @@ const Blog = ({blog,setBlogs}) => {
   }
   const [visiblity, setVisibility]= useState(false)
   const [liked,setLiked] = useState(false)
+  const likeBtnText = useRef(null)
   const showMore = ()=>{
     setVisibility(!visiblity);
 }
@@ -28,6 +29,7 @@ const likeBtn = async()=>{
   if(!liked){
     try {
       await like(blog)
+      likeBtnText.current.textContent = 'Liked'
       setLiked(!liked)
       notify('blog successfully liked')
       updateRender()
@@ -52,18 +54,18 @@ const removeBtn= async()=>{
     return(
       <div style={blogStyle}>
         {blog.title} {blog.author}
-        <button onClick={()=>showMore()}>view</button>
+        <button className='viewBtn' onClick={()=>showMore()}>view</button>
       </div>  
     )
   else return(
     <div style={blogStyle}>
       <span>{blog.title} {blog.author}
-        <button onClick={()=>showMore()}>hide</button>  
+        <button className='hideBtn' onClick={()=>showMore()}>hide</button>  
       </span>
-      <p>likes: {blog.likes}
-        <button onClick={()=>{likeBtn()}}>like</button>
+      <p data-testid="likes">likes: <span data-testid="likes-num">{blog.likes}</span>
+        <button ref={likeBtnText} className='likeBtn' onClick={()=>{likeBtn()}}>like</button>
       </p>
-      <p>URL: {blog.url}</p>
+      <p data-testid="url">URL: {blog.url}</p>
       <button onClick={()=>removeBtn()}>remove</button>
     </div>  
   )
