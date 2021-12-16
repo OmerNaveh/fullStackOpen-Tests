@@ -8,7 +8,7 @@ beforeEach(()=>{
 })
 test('should be able to change input value',()=>{
     const form = render(<CreatBlog />)
-    const title = form.getByTestId('title')
+    const title = form.container.querySelector('#title')
     fireEvent.change(title,{ 
         target: { value: 'test' } 
       });

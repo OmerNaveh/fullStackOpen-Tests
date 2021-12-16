@@ -52,7 +52,7 @@ const removeBtn= async()=>{
 }
   if(!visiblity)
     return(
-      <div style={blogStyle}>
+      <div className='posts' style={blogStyle}>
         {blog.title} {blog.author}
         <button className='viewBtn' onClick={()=>showMore()}>view</button>
       </div>  
@@ -62,11 +62,11 @@ const removeBtn= async()=>{
       <span>{blog.title} {blog.author}
         <button className='hideBtn' onClick={()=>showMore()}>hide</button>  
       </span>
-      <p data-testid="likes">likes: <span data-testid="likes-num">{blog.likes}</span>
+      <p id="likes">likes: <span className="likes-num">{blog.likes}</span>
         <button ref={likeBtnText} className='likeBtn' onClick={()=>{likeBtn()}}>like</button>
       </p>
-      <p data-testid="url">URL: {blog.url}</p>
-      <button onClick={()=>removeBtn()}>remove</button>
+      <p id="blog-url">URL: {blog.url}</p>
+      <button id='remove-blog' onClick={()=>removeBtn()}>remove</button>
     </div>  
   )
 }

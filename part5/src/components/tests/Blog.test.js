@@ -19,8 +19,8 @@ describe('testing Blog component', ()=>{
         const blog = render(<Blog blog={mockBlog}/>)
         const viewBtn = blog.container.querySelector('.viewBtn');
         fireEvent.click(viewBtn);
-        const url = blog.getByTestId('url');
-        const likes = blog.getByTestId('likes')
+        const url = blog.container.querySelector('#blog-url');
+        const likes = blog.container.querySelector('#likes')
         expect(blog.container).toContainElement(url)
         expect(blog.container).toContainElement(likes)
     })

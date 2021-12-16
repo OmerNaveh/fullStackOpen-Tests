@@ -20,12 +20,12 @@ export default function Login(props){
         <div>
             <h1 id='pageTitle'>Log In To Application</h1>
             <p>UserName
-            <input ref={userName}></input>
+            <input id='userName' ref={userName}></input>
             </p>
             <p>Password
-            <input ref={password}></input>
+            <input id='password' ref={password}></input>
             </p>
-            <button onClick={()=>loginFunc()}>LogIn</button>
+            <button id='signInBtn' onClick={()=>loginFunc()}>LogIn</button>
         </div>
     )
 }

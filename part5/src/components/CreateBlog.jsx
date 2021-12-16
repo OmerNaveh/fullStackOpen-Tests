@@ -34,10 +34,10 @@ export default function CreatBlog(props){
     return(
         <div>
             <h4>Create New</h4>
-            <p>Title<input data-testid='title' ref={titleInput} required></input></p>
-            <p>Author<input data-testid='author' ref={authorInput} required></input></p>
-            <p>URL<input data-testid='url' ref={urlInput} required></input></p>
-            <button onClick={()=> createPost()}>create</button>
+            <p>Title<input id='title' ref={titleInput} required></input></p>
+            <p>Author<input id='author' ref={authorInput} required></input></p>
+            <p>URL<input id='url' ref={urlInput} required></input></p>
+            <button id='formBtn' onClick={()=> createPost()}>create</button>
         </div>
     )
 }

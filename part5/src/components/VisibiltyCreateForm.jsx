@@ -16,7 +16,7 @@ export default function VisiblityCreateForm(props){
         )
     else return(
         <div>
-            <button onClick={()=>showForm()}>Add Blog</button>
+            <button id='addBlog' onClick={()=>showForm()}>Add Blog</button>
         </div>
     )
 }
